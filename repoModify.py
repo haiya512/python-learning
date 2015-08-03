@@ -34,10 +34,8 @@ FILELIST = list_files(PATH)
 for filename in FILELIST:
     oldfile = PATH + filename
     oldfileMD5 = md5sum(oldfile)
-    newfileName = oldfile + ".swap"
+    newfileName = "/tmp/" + filename + ".swap"
     modifyFile(oldfile, newfileName)
     newfileMD5 = md5sum(newfileName)
     if oldfileMD5 != newfileMD5:
-        os.remove(newfileName, oldfile)
-    else:
-        os.
+        shutil.copy(newfileName, oldfile)
