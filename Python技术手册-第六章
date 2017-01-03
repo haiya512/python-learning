@@ -1,0 +1,19 @@
+class InvalidAttribute(AttributeError):
+    "used to indicate attributes that could never be valid"
+
+class SomeFunkyClass(object):
+    "much hypothetical functionality snipped"
+    def __getattr__(self, name):
+        "this __getattr__ only"
+        if name.startwith('_'):
+            raise InvalidAttribute, "Unknown private attribute "+name
+        else:
+            raise AttributeError, "Unknown attribute "+name
+
+s = SomeFunkyClass()
+
+try:
+    value = getattr(s, "thename")
+except InvalidAttribute, err:
+    warnings.warn(str(err))
+    value = None
