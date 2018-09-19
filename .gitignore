@@ -1,3 +1,5 @@
 .ipynb_checkpoints
 ghostdriver.log
 ucloud.ipynb
+.idea/
+.python-version
